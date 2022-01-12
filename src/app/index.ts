@@ -20,13 +20,13 @@ server.setConfig((app01) => {
   app01.use(
     express.urlencoded({
       extended: true,
-      limit: '20mb'
+      limit: '10mb'
     })
   );
   app01.use(
     express.json({
       type: 'application/vnd.api+json',
-      limit: '20mb'
+      limit: '10mb'
     })
   );
   app01.use(methodOverride());

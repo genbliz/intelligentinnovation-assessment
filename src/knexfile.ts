@@ -14,6 +14,20 @@ interface IKnexConfig {
 const MIGRATION_DIRECTORY = UtilService.getFullPathFromRoot('src/database/migrations');
 const SEED_DIRECTORY = UtilService.getFullPathFromRoot('src/app/tests/seeds');
 
+// const pool: Knex.PoolConfig = {
+//   min: 0,
+//   max: 10,
+//   acquireTimeoutMillis: 30000,
+//   createTimeoutMillis: 1500,
+//   createRetryIntervalMillis: 500,
+//   propagateCreateError: false
+// };
+
+const pool: Knex.PoolConfig = {
+  min: 2,
+  max: 10
+};
+
 const knexConfiguration: IKnexConfig = {
   test: {
     client: 'postgresql',
@@ -25,8 +39,7 @@ const knexConfiguration: IKnexConfig = {
       port: envConfig.POSTGRES_TEST_PORT
     },
     pool: {
-      min: 2,
-      max: 10
+      ...pool
     },
     migrations: {
       directory: MIGRATION_DIRECTORY,
@@ -48,8 +61,7 @@ const knexConfiguration: IKnexConfig = {
       port: envConfig.POSTGRES_PORT
     },
     pool: {
-      min: 2,
-      max: 10
+      ...pool
     },
     migrations: {
       directory: MIGRATION_DIRECTORY,
@@ -71,8 +83,7 @@ const knexConfiguration: IKnexConfig = {
       port: envConfig.POSTGRES_PORT
     },
     pool: {
-      min: 2,
-      max: 10
+      ...pool
     },
     migrations: {
       directory: MIGRATION_DIRECTORY,
@@ -94,8 +105,7 @@ const knexConfiguration: IKnexConfig = {
       port: envConfig.POSTGRES_PORT
     },
     pool: {
-      min: 2,
-      max: 10
+      ...pool
     },
     migrations: {
       directory: MIGRATION_DIRECTORY,

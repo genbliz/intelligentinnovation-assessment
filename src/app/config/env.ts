@@ -50,7 +50,7 @@ function getEnvNumber(envKey: string, defaultVal?: number) {
 type IEnvironment = 'production' | 'staging' | 'development' | 'test';
 
 export const envConfig = {
-  port: getEnvNumber('PORT'),
+  port: getEnvNumber('PORT') || 5000,
   environment: getEnvString('NODE_ENV') as IEnvironment,
   POSTGRES_PORT: getEnvNumber('POSTGRES_PORT'),
   POSTGRES_PASSWORD: getEnvString('POSTGRES_PASSWORD'),
