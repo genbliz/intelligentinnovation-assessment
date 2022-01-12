@@ -30,7 +30,7 @@ server.setConfig((app01) => {
     app01.disable('x-powered-by');
 });
 const serverInstance = server.build();
-const PORT = env_1.envConfig.port;
+const PORT = process.env.PORT || env_1.envConfig.port || 5000;
 serverInstance.use((req, res, next) => {
     res.status(404).send({
         message: `Route '${req.path}', NOT found...`,
