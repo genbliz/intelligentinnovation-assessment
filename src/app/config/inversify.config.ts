@@ -2,6 +2,7 @@ import { Container } from 'inversify';
 import { HealthController } from '../controllers/health';
 import TYPES from './types';
 import { PostgresConnection } from './db';
+import { CommentRepository } from '../repository/comment';
 
 const container = new Container();
 
@@ -11,6 +12,7 @@ container.bind<HealthController>(TYPES.HealthController).to(HealthController).in
 // services
 
 // repositories
+container.bind<CommentRepository>(TYPES.CommentRepository).to(CommentRepository).inSingletonScope();
 
 // database
 container.bind<PostgresConnection>(TYPES.DatabaseConnection).to(PostgresConnection).inSingletonScope();

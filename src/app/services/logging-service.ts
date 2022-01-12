@@ -2,7 +2,7 @@ import bunyan from 'bunyan';
 import { envConfig } from '../config/env';
 
 const streams: any[] = [];
-const name = `MAX-XXXX-SERVICE-${envConfig.environment || ''}`;
+const name = `ASSESSMENT-SERVICE-${envConfig.environment || ''}`.toUpperCase();
 
 if (envConfig.environment === 'production') {
   streams.push({

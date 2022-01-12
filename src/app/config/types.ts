@@ -6,6 +6,8 @@ const TYPES = {
 
   // repositories
 
+  CommentRepository: Symbol('CommentRepository'),
+
   // models
 
   // database
