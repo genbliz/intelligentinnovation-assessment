@@ -5,7 +5,7 @@
   "main": "./dist/app/index.js",
   "scripts": {
     "start:dev": "ts-node-dev ./src/app/index.ts",
-    "start-prod": "node ./dist/app/index.js",
+    "start": "node ./dist/app/index.js",
     "test": "NODE_ENV=test jest --config ./jest.config.js",
     "prettier-format-fix": "prettier --write \"src/**/*.{ts,js,json}\"",
     "prettier-different": "prettier --list-different \"src/**/*.{ts,js,json}\"",
