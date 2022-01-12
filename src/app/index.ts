@@ -34,7 +34,7 @@ server.setConfig((app01) => {
 });
 
 const serverInstance = server.build();
-const PORT = envConfig.port;
+const PORT = process.env.PORT || envConfig.port || 5000;
 
 serverInstance.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
   res.status(404).send({
