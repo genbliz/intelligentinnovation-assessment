@@ -15,7 +15,7 @@
     "eslint": "eslint 'src/**/*.ts'",
     "eslint:fix": "eslint --fix 'src/**/*.ts'",
     "build": "rimraf ./dist && npx tsc -b",
-    "deploy": "rimraf ./dist && npx tsc -b",
+    "deploy": "npm run build && git push heroku master",
     "knex-db-migrate-latest-test": "cross-env NODE_ENV=test ts-node ./src/run-knex-migrate.ts",
     "knex-db-migrate-latest": "ts-node ./src/run-knex-migrate.ts",
     "knex-db-seed-test": "cross-env NODE_ENV=test ts-node ./src/run-knex-seed.ts",
