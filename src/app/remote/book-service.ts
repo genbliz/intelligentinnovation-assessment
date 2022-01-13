@@ -62,15 +62,19 @@ class BookServiceBase {
   async getCharacters({
     sort_field,
     sort_order,
-    gender
+    gender,
+    pageSize,
+    page
   }: {
     sort_field?: ICharacterSortField;
     sort_order?: ICharacterSortOrder;
     gender?: string;
+    page?: number;
+    pageSize?: number;
   }) {
     let characters = await HttpService.get<ICharacter[]>({
       url: `${this.BOOK_BASE_URL}/characters`,
-      params: { gender }
+      params: { gender, page, pageSize }
     });
 
     if (characters?.length) {

@@ -11,13 +11,17 @@ export class CharacterController extends BaseController {
     @queryParam('sort_field') sort_field: ICharacterSortField,
     @queryParam('sort_order') sort_order: ICharacterSortOrder,
     @queryParam('gender') gender: string,
+    @queryParam('page') page: number,
+    @queryParam('pageSize') pageSize: number,
     req: Request,
     res: Response
   ) {
     const characters = await BookService.getCharacters({
       sort_field,
       sort_order,
-      gender
+      gender,
+      pageSize,
+      page
     });
     return this.success({ res, data: characters });
   }
