@@ -1,18 +1,19 @@
 import { IComment } from './../types/comment';
 import { Request, Response } from 'express';
-import { controller, httpGet, queryParam } from 'inversify-express-utils';
+import { controller, httpGet, httpPost, queryParam } from 'inversify-express-utils';
 import { IBook } from '../types/book';
 import { BaseController } from './baseController';
 import { BookService } from '../remote/book-service';
 import { inject } from 'inversify';
 import TYPES from '../config/types';
 import { CommentRepository } from '../repository/comment';
+import requestIp from 'request-ip';
 
 interface IBookComment extends IBook {
   comments?: IComment[];
 }
 
-@controller('/books')
+@controller('/api/books')
 export class BookController extends BaseController {
   constructor(
     @inject(TYPES.CommentRepository)
@@ -37,8 +38,44 @@ export class BookController extends BaseController {
   async getOne(@queryParam('def__Get_by_id') def: string, req: Request, res: Response) {
     const book_id = Number(req.params.id);
     const book: IBookComment = await BookService.getBookById(book_id);
-    const comment = await this._CommentRepository.getByBookId(book_id);
-    book.comments = [...comment];
+    if (book?.isbn) {
+      const comments = await this._CommentRepository.getByBookId(book_id);
+      book.comments = [...comments];
+    }
     return this.success({ res, data: book });
+  }
+
+  @httpGet('/:id/comments')
+  async getCharacters(@queryParam('def__Get_Book_comments') def: string, req: Request, res: Response) {
+    const book_id = Number(req.params.id);
+    const comments = await this._CommentRepository.getByBookId(book_id);
+    return this.success({ res, data: comments });
+  }
+
+  @httpPost('/:id/comment')
+  async comment(@queryParam('def__Add_book_comment') def: string, req: Request, res: Response) {
+    const { comment } = req.body as IComment;
+
+    this.validateRequiredString({ comment });
+
+    const book_id = Number(req.params.id);
+    const book = await BookService.getBookById(book_id);
+
+    if (!book?.isbn) {
+      return this.error({
+        res,
+        message: 'Book does not exists'
+      });
+    }
+
+    const clientIp = requestIp.getClientIp(req);
+
+    const commentData = await this._CommentRepository.create({
+      comment: comment.slice(0, 500),
+      ip_address: clientIp,
+      book_id
+    } as IComment);
+
+    return this.success({ res, data: commentData });
   }
 }

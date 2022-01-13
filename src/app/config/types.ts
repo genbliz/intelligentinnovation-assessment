@@ -3,6 +3,7 @@ const TYPES = {
   HealthController: Symbol('HealthController'),
 
   BookController: Symbol('BookController'),
+  CharacterController: Symbol('CharacterController'),
 
   // service
 

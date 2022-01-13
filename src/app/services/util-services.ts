@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import appRoot from 'app-root-path';
 import Papa from 'papaparse';
 import validator from 'validator';
+import ip from 'ip';
 
 class UtilityServiceBase {
   convertHexadecimalToNumber(hexString: string) {
@@ -43,6 +44,10 @@ class UtilityServiceBase {
 
   getUUID() {
     return uuidv4();
+  }
+
+  getIpAddress() {
+    return ip.address();
   }
 
   unigueArray<T>(arr: T[]) {

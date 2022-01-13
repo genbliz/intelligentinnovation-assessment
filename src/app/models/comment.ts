@@ -15,7 +15,7 @@ export class CommentModel extends ObjectionModel {
       id: { type: 'string' },
       book_id: { type: 'integer' },
       comment: { type: 'string' },
-      commenter: { type: ['string', 'null'] },
+      ip_address: { type: ['string', 'null'] },
       created_at: { type: 'string' },
       updated_at: { type: ['string', 'null'] }
     }

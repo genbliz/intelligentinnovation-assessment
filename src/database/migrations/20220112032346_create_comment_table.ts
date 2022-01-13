@@ -13,8 +13,8 @@ export async function up(knex: Knex): Promise<any> {
     .createTable(DefinedTableNames.COMMENTS, (table) => {
       table.uuid('id').primary();
       table.integer('book_id').notNullable();
-      table.string('comment');
-      table.string('commenter');
+      table.text('comment').notNullable();
+      table.string('ip_address');
       table.timestamp('created_at').defaultTo(knex.fn.now());
       table.timestamp('updated_at').nullable().defaultTo(null);
     });

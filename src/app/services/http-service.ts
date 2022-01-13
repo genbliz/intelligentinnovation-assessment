@@ -105,7 +105,7 @@ class HttpServiceBase {
     headers?: string[][];
   }) {
     return new Promise<T>((resolve, reject) => {
-      const _options: AxiosRequestConfig = {};
+      const options01: AxiosRequestConfig = {};
 
       const appHeaders = new MyHeaders();
       appHeaders.append('Content-Type', 'application/json; charset=UTF-8');
@@ -115,14 +115,14 @@ class HttpServiceBase {
           appHeaders.append(header[0], header[1]);
         }
       }
-      _options.headers = appHeaders.toJSON();
+      options01.headers = appHeaders.toJSON();
 
       if (params) {
-        _options.params = params;
+        options01.params = params;
       }
 
       axios
-        .post<T>(url, data, _options)
+        .post<T>(url, data, options01)
         .then((body) => {
           resolve(body.data);
         })
@@ -144,7 +144,7 @@ class HttpServiceBase {
     headers?: string[][];
   }) {
     return new Promise<T>((resolve, reject) => {
-      const _options: AxiosRequestConfig = {};
+      const options01: AxiosRequestConfig = {};
 
       const appHeaders = new MyHeaders();
       appHeaders.append('Content-Type', 'application/json; charset=UTF-8');
@@ -154,14 +154,14 @@ class HttpServiceBase {
           appHeaders.append(header[0], header[1]);
         }
       }
-      _options.headers = appHeaders.toJSON();
+      options01.headers = appHeaders.toJSON();
 
       if (params) {
-        _options.params = params;
+        options01.params = params;
       }
 
       axios
-        .put<T>(url, data, _options)
+        .put<T>(url, data, options01)
         .then((body) => {
           resolve(body.data);
         })
@@ -173,7 +173,7 @@ class HttpServiceBase {
 
   get<T>({ url, params, headers }: { url: string; params?: { [name: string]: any }; headers?: string[][] }) {
     return new Promise<T>((resolve, reject) => {
-      const _options: AxiosRequestConfig = {};
+      const options01: AxiosRequestConfig = {};
 
       const appHeaders = new MyHeaders();
       appHeaders.append('Content-Type', 'application/json; charset=UTF-8');
@@ -184,14 +184,14 @@ class HttpServiceBase {
           appHeaders.append(header[0], header[1]);
         }
       }
-      _options.headers = appHeaders.toJSON();
+      options01.headers = appHeaders.toJSON();
 
       if (params) {
-        _options.params = params;
+        options01.params = params;
       }
 
       axios
-        .get<T>(url, _options)
+        .get<T>(url, options01)
         .then((result) => {
           resolve(result.data);
         })

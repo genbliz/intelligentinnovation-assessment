@@ -4,12 +4,14 @@ import TYPES from './types';
 import { PostgresConnection } from './db';
 import { CommentRepository } from '../repository/comment';
 import { BookController } from '../controllers/books';
+import { CharacterController } from '../controllers/character';
 
 const container = new Container();
 
 // controllers
 container.bind<HealthController>(TYPES.HealthController).to(HealthController).inSingletonScope();
 container.bind<BookController>(TYPES.BookController).to(BookController).inSingletonScope();
+container.bind<CharacterController>(TYPES.CharacterController).to(CharacterController).inSingletonScope();
 
 // services
 

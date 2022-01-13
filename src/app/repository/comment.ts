@@ -1,3 +1,4 @@
+import { UtilService } from './../services/util-services';
 import { IComment } from './../types/comment';
 import { injectable } from 'inversify';
 import { CommentModel } from '../models/comment';
@@ -18,11 +19,12 @@ export class CommentRepository extends BaseRepository {
     return await CommentModel.query().where('book_id', book_id);
   }
 
-  async create(data: IComment) {
+  async create({ comment, ip_address, book_id }: IComment) {
     const dataToDb = {
-      comment: data.comment,
-      book_id: data.book_id,
-      commenter: data.commenter,
+      id: UtilService.getUUID(),
+      comment,
+      book_id,
+      ip_address,
       created_at: new Date().toISOString()
     } as IComment;
     const result = await CommentModel.query().insertAndFetch(dataToDb);
