@@ -2,6 +2,8 @@ const TYPES = {
   // controllers
   HealthController: Symbol('HealthController'),
 
+  BookController: Symbol('BookController'),
+
   // service
 
   // repositories
