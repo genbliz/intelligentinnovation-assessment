@@ -29,8 +29,11 @@ npm run start:dev
 ```
 
 ## Api Documentation Links
-* Route Definition https://api.aaaaa.com/xxxxxxx/health/routes
+* Route Definition https://intelligent-assessment.herokuapp.com/docs/health/routes
 
-* Documentation Site https://api.aaaaa.com/xxxxxxx/health/routes/html
+* Documentation Site https://intelligent-assessment.herokuapp.com/docs/health/routes/html
 
-* Postman Collection https://api.aaaaa.com/xxxxxxx/health/postman
+* Postman Collection https://intelligent-assessment.herokuapp.com/docs/health/postman
+
+## Frontend Website Link
+* https://intelligent-assessment-app.herokuapp.com

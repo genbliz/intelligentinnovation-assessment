@@ -4,6 +4,7 @@ const TYPES = {
 
   BookController: Symbol('BookController'),
   CharacterController: Symbol('CharacterController'),
+  DocsController: Symbol('DocsController'),
 
   // service
 

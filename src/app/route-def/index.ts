@@ -1,7 +1,8 @@
 import { IRouteDefData } from 'inversify-postman-collection';
+import book from './book';
 
 const routeDefinitionData: IRouteDefData = {
-  // your route defs here
+  BookController: book
 };
 
 export function getRouteDefinitionData() {

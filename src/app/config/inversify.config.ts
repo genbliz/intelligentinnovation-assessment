@@ -5,6 +5,7 @@ import { PostgresConnection } from './db';
 import { CommentRepository } from '../repository/comment';
 import { BookController } from '../controllers/books';
 import { CharacterController } from '../controllers/character';
+import { DocsController } from '../controllers/docs';
 
 const container = new Container();
 
@@ -12,6 +13,7 @@ const container = new Container();
 container.bind<HealthController>(TYPES.HealthController).to(HealthController).inSingletonScope();
 container.bind<BookController>(TYPES.BookController).to(BookController).inSingletonScope();
 container.bind<CharacterController>(TYPES.CharacterController).to(CharacterController).inSingletonScope();
+container.bind<DocsController>(TYPES.DocsController).to(DocsController).inSingletonScope();
 
 // services
 
