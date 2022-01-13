@@ -7,7 +7,7 @@ import { inject } from 'inversify';
 import TYPES from '../config/types';
 import { CommentRepository } from '../repository/comment';
 import requestIp from 'request-ip';
-import lodash from 'lodash';
+// import lodash from 'lodash';
 import { IBookComment } from '../types/book';
 
 @controller('/api/books')
@@ -28,18 +28,18 @@ export class BookController extends BaseController {
     res: Response
   ) {
     const books = await BookService.getAllBooks({ pageSize, page });
-    const bookIds = books.map((f) => f.id);
-    if (bookIds?.length) {
-      const comments = await this._CommentRepository.getByBookIds(bookIds);
+    // const bookIds = books.map((f) => f.id);
+    // if (bookIds?.length) {
+    //   const comments = await this._CommentRepository.getByBookIds(bookIds);
 
-      if (comments?.length) {
-        const commentsGrouped = lodash.groupBy(comments, (f) => f.book_id);
-        return books.map((f) => {
-          f.commentCount = commentsGrouped?.[f.id]?.length || 0;
-          return f;
-        });
-      }
-    }
+    //   if (comments?.length) {
+    //     const commentsGrouped = lodash.groupBy(comments, (f) => f.book_id);
+    //     return books.map((f) => {
+    //       f.commentCount = commentsGrouped?.[f.id]?.length || 0;
+    //       return f;
+    //     });
+    //   }
+    // }
     return this.success({ res, data: books });
   }
 
