@@ -86,7 +86,7 @@ class BookServiceBase {
         }
       }
     }
-    return { characters };
+    return characters;
   }
 }
 

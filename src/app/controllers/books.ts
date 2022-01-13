@@ -51,7 +51,6 @@ export class BookController extends BaseController {
       const comments = await this._CommentRepository.getByBookId(book_id);
       book.comments = [...comments];
     }
-    console.log({ book });
     return this.success({ res, data: book });
   }
 
