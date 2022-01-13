@@ -1,17 +1,13 @@
 import { IComment } from './../types/comment';
 import { Request, Response } from 'express';
 import { controller, httpGet, httpPost, queryParam } from 'inversify-express-utils';
-import { IBook } from '../types/book';
 import { BaseController } from './baseController';
 import { BookService } from '../remote/book-service';
 import { inject } from 'inversify';
 import TYPES from '../config/types';
 import { CommentRepository } from '../repository/comment';
 import requestIp from 'request-ip';
-
-interface IBookComment extends IBook {
-  comments?: IComment[];
-}
+import { IBookComment } from '../types/book';
 
 @controller('/api/books')
 export class BookController extends BaseController {
@@ -42,11 +38,12 @@ export class BookController extends BaseController {
       const comments = await this._CommentRepository.getByBookId(book_id);
       book.comments = [...comments];
     }
+    console.log({ book });
     return this.success({ res, data: book });
   }
 
   @httpGet('/:id/comments')
-  async getCharacters(@queryParam('def__Get_Book_comments') def: string, req: Request, res: Response) {
+  async getComments(@queryParam('def__Get_Book_comments') def: string, req: Request, res: Response) {
     const book_id = Number(req.params.id);
     const comments = await this._CommentRepository.getByBookId(book_id);
     return this.success({ res, data: comments });

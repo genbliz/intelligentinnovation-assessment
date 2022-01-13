@@ -1,3 +1,5 @@
+import { IComment } from './comment';
+
 export interface IBook {
   id?: number;
   url: string;
@@ -11,6 +13,8 @@ export interface IBook {
   released: string;
   characters: string[];
   povCharacters: string[];
+  //
+  commentCount: number;
 }
 
 export interface ICharacter {
@@ -35,4 +39,8 @@ export interface ICharacter {
     totalAgeInYears?: number;
     totalAgeInMonths?: number;
   };
+}
+
+export interface IBookComment extends IBook {
+  comments?: IComment[];
 }
