@@ -12,11 +12,15 @@ export class CommentRepository extends BaseRepository {
   }
 
   async getAll(): Promise<IComment[]> {
-    return await CommentModel.query();
+    return await CommentModel.query().orderBy('created_at', 'DESC');
+  }
+
+  async getByBookIds(book_ids: number[]): Promise<IComment[]> {
+    return await CommentModel.query().whereIn('book_id', book_ids).orderBy('created_at', 'DESC');
   }
 
   async getByBookId(book_id: number): Promise<IComment[]> {
-    return await CommentModel.query().where('book_id', book_id);
+    return await CommentModel.query().where('book_id', book_id).orderBy('created_at', 'DESC');
   }
 
   async create({ comment, ip_address, book_id }: IComment) {

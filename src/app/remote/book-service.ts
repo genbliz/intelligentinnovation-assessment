@@ -22,12 +22,13 @@ class BookServiceBase {
           id: parseInt(f.url.split('/').slice(-1)[0]),
           released: f.released,
           authors: f.authors,
-          name: f.name
+          name: f.name,
+          commentCount: 0
         };
       });
       return lodash.orderBy(books01, (f) => f.released, 'desc');
     }
-    return books;
+    return [];
   }
 
   async getBookById(id: number) {
